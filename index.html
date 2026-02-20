@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Surat Valentine 💖</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Container */
+.container {
+    text-align: center;
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    max-width: 400px;
+    position: relative;
+}
+
+/* Fade Out */
+.fade-out {
+    animation: fadeOut 1s forwards;
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; transform: scale(1); }
+    to { opacity: 0; transform: scale(1.2); }
+}
+
+h1 {
+    color: #ff4b5c;
+}
+
+/* Buttons */
+button {
+    padding: 10px 20px;
+    margin: 10px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#yesBtn {
+    background-color: #ff4b5c;
+    color: white;
+}
+
+#yesBtn:hover {
+    transform: scale(1.1);
+}
+
+#noBtn {
+    background-color: #ccc;
+    position: absolute;
+}
+
+.nextBtn {
+    background-color: #ff4b5c;
+    color: white;
+}
+
+.nextBtn:hover {
+    transform: scale(1.1);
+}
+
+#letterPage {
+    display: none;
+}
+
+/* Typing text */
+#typingText {
+    min-height: 80px;
+    margin-top: 20px;
+    font-size: 16px;
+}
+
+/* Hati jatuh */
+.heart {
+    position: fixed;
+    top: -10px;
+    color: #ff4b5c;
+    font-size: 20px;
+    animation: fall linear forwards;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(100vh);
+        opacity: 0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HALAMAN PERTANYAAN -->
+<div class="container" id="questionPage">
+    <h1>Pliss Baca Yaa 💖</h1>
+    <button id="yesBtn">Yes 💕</button>
+    <button id="noBtn">No 😢</button>
+</div>
+
+<!-- HALAMAN SURAT -->
+<div class="container" id="letterPage">
+    <h1>Untuk Kamu ❤️</h1>
+    <p id="typingText"></p>
+    <button class="nextBtn" onclick="goToLove()">Halaman Selanjutnya ➜</button>
+</div>
+
+<script>
+const yesBtn = document.getElementById("yesBtn");
+const noBtn = document.getElementById("noBtn");
+const questionPage = document.getElementById("questionPage");
+const letterPage = document.getElementById("letterPage");
+const typingText = document.getElementById("typingText");
+
+const message = "hai, gimana kabarnya, kayaknya kamu lebih happy sekarang, jujur aku kangen banget sama kamu, kamu adalah rindu yang paling aku rindukan, aku gak tau ya harus kayak gimana, aku ingin kita kembali bersama bukan untuk mengulang cerita lama tapi membuat cerita yang baru dengan versi terbaik kita, versi yang udh belajar dari sebelumnya, aku pernah bilang ke kamu bahwa kamu adalah yang terakhir and ya sampai kapanpun itu kamu lah yang terakhir, klo kamu belum mau skrng it's okay, i waiting for you anytime, yah bentar lagi aku lulus masa-masa kita ketemu sebntar lagi, aku akan pindah dari kota ini aku akan meninggalkan kota ini berserta kenangan nya, aku harap kamu gak lupain aku ya, kamu harus semangat ya, i hope you reach all your dreams, i'll always be pround of you, even if you're no longer me, see you again in the futurei love youu";
+
+let index = 0;
+
+/* Klik YES */
+yesBtn.addEventListener("click", function() {
+    questionPage.style.display = "none";
+    letterPage.style.display = "block";
+    startTyping();
+});
+
+/* Tombol NO kabur */
+noBtn.addEventListener("mouseover", function() {
+    const x = Math.random() * 300;
+    const y = Math.random() * 200;
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+});
+
+/* Typing animation */
+function startTyping() {
+    if (index < message.length) {
+        typingText.innerHTML += message.charAt(index);
+        index++;
+        setTimeout(startTyping, 50);
+        createHeart();
+    }
+}
+
+/* Animasi hati */
+function createHeart() {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "💖";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = (Math.random() * 2 + 2) + "s";
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 4000);
+}
+
+/* Animasi lalu pindah halaman */
+function goToLove() {
+    letterPage.classList.add("fade-out");
+    setTimeout(() => {
+        window.location.href = "iloveyou.html";
+    }, 1000);
+}
+</script>
+
+</body>
+</html>
